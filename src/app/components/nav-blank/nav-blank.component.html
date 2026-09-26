@@ -19,7 +19,8 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <i class="fa-solid fa-bars fa-lg"></i>
+      <i class="fa-solid fa-bars fa-lg icon-open"></i>
+      <i class="fa-solid fa-xmark fa-lg icon-close"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -28,6 +29,7 @@
           <a
             class="nav-link px-3 py-2 rounded-pill"
             routerLink="home"
+            (click)="closeNavbar()"
             routerLinkActive="active-link"
           >
             {{ "nav.home" | translate }}
@@ -37,6 +39,7 @@
           <a
             class="nav-link px-3 py-2 rounded-pill"
             routerLink="products"
+            (click)="closeNavbar()"
             routerLinkActive="active-link"
           >
             {{ "nav.products" | translate }}
@@ -46,6 +49,7 @@
           <a
             class="nav-link px-3 py-2 rounded-pill"
             routerLink="categories"
+            (click)="closeNavbar()"
             routerLinkActive="active-link"
           >
             {{ "nav.categories" | translate }}
@@ -55,6 +59,7 @@
           <a
             class="nav-link px-3 py-2 rounded-pill"
             routerLink="brands"
+            (click)="closeNavbar()"
             routerLinkActive="active-link"
           >
             {{ "nav.brands" | translate }}
@@ -64,6 +69,7 @@
           <a
             class="nav-link py-2 px-3 rounded-pill position-relative"
             routerLink="allorders"
+            (click)="closeNavbar()"
             routerLinkActive="active-Text"
           >
             <!-- Icon only on lg+ -->
@@ -117,6 +123,7 @@
           <a
             class="nav-link px-3 py-2 rounded-pill d-flex align-items-center justify-content-between justify-content-lg-center gap-2"
             routerLink="cart"
+            (click)="closeNavbar()"
             routerLinkActive="active-Text"
           >
             <!-- Text on sm/md/xs, left side -->
@@ -164,7 +171,10 @@
         </li>
 
         <!-- Sign out -->
-        <li class="nav-item" (click)="this._AuthService.logout()">
+        <li
+          class="nav-item"
+          (click)="this._AuthService.logout(); closeNavbar()"
+        >
           <a
             class="nav-link px-3 py-2 rounded-pill fw-semibold text-danger-hover cr"
           >
