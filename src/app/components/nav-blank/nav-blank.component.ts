@@ -21,6 +21,8 @@ export class NavBlankComponent {
 
   countNumber: Signal<number> = computed(() => this._CartService.cartNumber());
 
+  private readonly LG_BREAKPOINT = 992;
+
   ngOnInit(): void {
     this._CartService.getCartProudcts().subscribe({
       next: (res) => {
@@ -37,7 +39,22 @@ export class NavBlankComponent {
     //   },
     // }); // instead make countNumber depends on cartNumber
   }
+
   change(lang: string): void {
     this._TranslationService.changeLang(lang);
+  }
+
+  closeNavbar(): void {
+    if (window.innerWidth >= this.LG_BREAKPOINT) return;
+
+    const menu = document.getElementById('navbarNav');
+    const toggler = document.querySelector(
+      '.navbar-toggler',
+    ) as HTMLElement | null;
+
+    if (menu?.classList.contains('show')) {
+      menu.classList.remove('show');
+    }
+    toggler?.setAttribute('aria-expanded', 'false');
   }
 }
