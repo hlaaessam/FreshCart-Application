@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
-  <div class="d-flex justify-content-between align-items-center w-100 mx-2">
+  <div class="container-fluid">
     <!-- Brand -->
     <a class="navbar-brand" routerLink="home">
       <img
@@ -11,7 +11,7 @@
 
     <!-- Toggler -->
     <button
-      class="navbar-toggler border-0 px-3 py-2 rounded-pill btn-toggle"
+      class="navbar-toggler border-0 p-2 btn-toggle"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNav"
@@ -19,7 +19,7 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <i class="fa-solid fa-bars fa-lg"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -53,7 +53,7 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link pl-3 py-2 rounded-pill"
+            class="nav-link px-3 py-2 rounded-pill"
             routerLink="brands"
             routerLinkActive="active-link"
           >
@@ -62,11 +62,18 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link py-2 px-1 rounded-pill position-relative"
+            class="nav-link py-2 px-3 rounded-pill position-relative"
             routerLink="allorders"
             routerLinkActive="active-Text"
           >
-            <i class="fa-brands fa-first-order fa-lg text-success"></i>
+            <!-- Icon only on lg+ -->
+            <i
+              class="fa-brands fa-first-order fa-lg text-success d-none d-lg-inline"
+            ></i>
+            <!-- Text on sm/md/xs -->
+            <span class="d-inline d-lg-none">{{
+              "nav.orderHistory" | translate
+            }}</span>
           </a>
         </li>
       </ul>
@@ -108,16 +115,28 @@
         <!-- Cart -->
         <li class="nav-item">
           <a
-            class="nav-link px-3 py-2 rounded-pill position-relative"
+            class="nav-link px-3 py-2 rounded-pill d-flex align-items-center justify-content-between justify-content-lg-center gap-2"
             routerLink="cart"
             routerLinkActive="active-Text"
           >
-            <i class="fa-solid fa-cart-arrow-down fa-lg text-success"></i>
-            <span
-              class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success"
-              style="font-size: 0.6rem"
-            >
-              {{ countNumber() }}
+            <!-- Text on sm/md/xs, left side -->
+            <span class="d-inline d-lg-none">{{ "nav.cart" | translate }}</span>
+
+            <!-- Icon + badge, always visible, grouped so badge stays on the icon's corner -->
+            <span class="position-relative d-inline-flex align-items-center">
+              <i class="fa-solid fa-cart-arrow-down fa-lg text-success"></i>
+              <span
+                class="badge rounded-pill bg-success"
+                style="
+                  position: absolute;
+                  top: -6px;
+                  right: -8px;
+                  left: auto;
+                  font-size: 0.6rem;
+                "
+              >
+                {{ countNumber() }}
+              </span>
             </span>
           </a>
         </li>
