@@ -67,8 +67,6 @@ $skeleton-shine: #f8f9fa;
   box-sizing: border-box;
 }
 
-// Prevents any wide flex/grid child from forcing horizontal scroll on narrow
-// viewports (e.g. cart/orders headers, flex rows without min-width: 0).
 html {
   overflow-x: hidden;
 }
